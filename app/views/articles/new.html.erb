@@ -1,0 +1,9 @@
+<%= simple_form_for @article, url:articles_path do |f| %>
+  <%= f.input :name, wrapper_html:{class:'name'} %>
+  <div>
+    <%= label_tag :type %>
+    <%= select_tag :type, '<option>Character</option>'.html_safe %>
+  </div>
+  <%# f.input :type, as: :select, collection:Article::TYPES %>
+  <%= f.button :submit %>
+<% end %>

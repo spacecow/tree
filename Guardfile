@@ -11,6 +11,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch('spec/spec_helper.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
   watch(%r{features/support/}) { :cucumber }
+  watch(%r{^spec/support/.+\.rb$})
 end
 
 guard 'rspec', :version => 2, :cli => "--format nested --drb --fail-fast", :all_after_pass => true, :all_on_start => true, :keep_failed => true do

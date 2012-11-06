@@ -4,6 +4,8 @@ gem 'rails', '3.2.8'
 gem 'mysql2'
 gem 'jquery-rails'
 gem 'cancan'
+gem 'simple_form'
+#gem 'strong_parameters'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

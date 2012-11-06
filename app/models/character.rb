@@ -1,0 +1,2 @@
+class Character < Article
+end

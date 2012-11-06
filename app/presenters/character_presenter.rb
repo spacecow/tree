@@ -1,0 +1,2 @@
+class CharacterPresenter < ArticlePresenter
+end

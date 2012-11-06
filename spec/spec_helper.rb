@@ -13,6 +13,17 @@ Spork.prefork do
     config.use_transactional_fixtures = true
     config.infer_base_class_for_anonymous_controllers = false
     config.order = "random"
+
+    config.run_all_when_everything_filtered = true
+
+    #focus filter
+    config.filter_run :focus => true
+
+    #factorygirl shortcut
+    config.include FactoryGirl::Syntax::Methods
+
+    # --------- Testing presenters ---------
+    config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/presenters}}
   end
 end
 

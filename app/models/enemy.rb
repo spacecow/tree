@@ -1,0 +1,2 @@
+class Enemy < Relation
+end
