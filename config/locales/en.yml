@@ -2,9 +2,14 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  history:
+    one: History
   project:
     one: Project
     other: Projects
 
   labels:
     new: New %{o}
+
+  successes:
+    created: "%{o} created"

@@ -1,10 +1,22 @@
 class ProjectPresenter < BasePresenter
   presents :project
 
+  def articles
+    h.content_tag :div, class:'articles' do
+      characters+events
+    end if project.articles.present?
+  end
+
   def characters
-    h.content_tag :div, class:%w(articles characters).join(' ') do
-      "Characters: #{h.render partial:'articles/character', collection:project.articles}".html_safe
+    h.content_tag :div, class:'characters' do
+      "Characters: #{h.render partial:'articles/character', collection:project.characters}".html_safe
     end if project.characters.present?
+  end
+
+  def events
+    h.content_tag :div, class:'events' do
+      "Events: #{h.render partial:'articles/event', collection:project.events}".html_safe
+    end if project.events.present?
   end
 
   def projects

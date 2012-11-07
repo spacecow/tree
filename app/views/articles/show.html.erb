@@ -1,18 +1,16 @@
+<%= title @article.title %>
+
 <% present @article do |presenter| %>
 
-<%= title @article.type %>
 <div class="article">
-  <%= presenter.name %>
-
   <%= presenter.relations %>
 
-  <%= simple_form_for Relation.new do |f| %>
+  <%= simple_form_for [@article,@relation], url:article_relations_path(@article,@relation) do |f| %>
     <%= f.input :relative_id, as: :select, collection:Article.all.reject{|e| e==@article} %>
     <div>
       <%= label_tag :type %>
       <%= select_tag :type, '<option>Enemy</option>'.html_safe %>
     </div>
-    <%= hidden_field_tag :article_id, @article.id %>
     <%= f.button :submit, 'Create Relation' %>
   <% end %>
 </div>

@@ -7,6 +7,13 @@ FactoryGirl.define do
     factory :character do
       type 'Character'
     end
+    factory :event do
+      type 'Event'
+    end
+  end
+
+  factory :history do
+    content 'Factory content'
   end
 
   factory :relation do

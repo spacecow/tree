@@ -1,0 +1,5 @@
+<%= simple_form_for @article, url:article_path(@article), as: 'article' do |f| %>
+  <%= f.input :name %>
+  <%= f.input :type, as: :select, collection:Article::TYPES %>
+  <%= f.button :submit %>
+<% end %>

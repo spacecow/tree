@@ -1,0 +1,2 @@
+class EventPresenter < ArticlePresenter
+end

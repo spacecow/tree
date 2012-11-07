@@ -1,7 +1,8 @@
 <% present enemy do |presenter| %>
 
 <div class="relation enemy">
-  <%= presenter.name %>
+  <%= presenter.name(main) %>
+  <%= presenter.actions(main) %>
 </div>
 
 <% end %>

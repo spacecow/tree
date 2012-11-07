@@ -1,0 +1,2 @@
+class Event < Article
+end

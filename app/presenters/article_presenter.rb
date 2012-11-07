@@ -9,7 +9,7 @@ class ArticlePresenter < BasePresenter
 
   def enemies
     h.content_tag :div, class:'enemies' do
-      "Enemies: #{h.render partial:'relations/enemy', collection:article.enemies}".html_safe
+      "Enemies: #{h.render partial:'relations/enemy', collection:article.enemies, locals:{main:article}}".html_safe
     end if article.enemies.present?
   end
   def friends
@@ -21,6 +21,6 @@ class ArticlePresenter < BasePresenter
   def relations
     h.content_tag :div, class:'relations' do
       enemies+friends  
-    end if article.relations.present?
+    end if article.all_relations.present?
   end
 end

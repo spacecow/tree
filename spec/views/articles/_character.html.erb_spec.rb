@@ -6,6 +6,10 @@ describe 'articles/_character.html.erb' do
 
   describe 'div.article.character' do
     subject{ Capybara.string(rendered).find('div.article.character')}
-    it{ should have_xpath "//a[@href='#{article_path(character)}']", text:'Spawn' } 
+
+    describe 'div.name' do
+      subject{ Capybara.string(rendered).find('div.article.character div.name')}
+      it{ should have_xpath "//a[@href='#{article_path(character)}']", text:'Spawn' } 
+    end
   end
 end

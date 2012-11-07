@@ -1,0 +1,10 @@
+<%= title @relation.title(@main)  %>
+
+<% present @relation do |presenter| %>
+
+<div class='relation'>
+  <%= presenter.histories %>
+  <%= presenter.history_form %>
+</div>
+
+<% end %>

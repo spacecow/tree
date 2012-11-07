@@ -1,19 +1,25 @@
 require 'spec_helper'
 
 describe 'relations/_enemy.html.erb' do
-  before do
-    spawn = create(:character)
-    violator = create(:character, name:'Violator')
-    enemy = create(:enemy, article:spawn, relative:violator)
-    render partial:'relations/enemy', locals:{enemy:enemy}
-  end
+  let(:spawn){ create(:character, name:'Spawn')}
+  let(:violator){ create(:character, name:'Violator')}
+  let(:enemy){ create(:enemy, article:spawn, relative:violator)}
 
-  describe 'div.relation.enemy' do
-    subject{ Capybara.string(rendered).find('div.relation.enemy')}
+  context "enemy" do
+    before{ render partial:'relations/enemy', locals:{enemy:enemy, main:spawn}}
 
-    describe 'div.name' do
-      subject{ Capybara.string(rendered).find('div.relation.enemy div.name')}
-      it{ should have_content 'Violator' }
+    describe 'div.relation.enemy' do
+      subject{ Capybara.string(rendered).find('div.relation.enemy')}
+      it{ should have_selector 'div.name', text:'Violator' }
     end
-  end
+  end # enemy
+
+  context "inverse enemy" do
+    before{ render partial:'relations/enemy', locals:{enemy:enemy, main:violator}}
+
+    describe 'div.relation.enemy' do
+      subject{ Capybara.string(rendered).find('div.relation.enemy')}
+      it{ should have_selector 'div.name', text:'Spawn' }
+    end
+  end # inverse enemy
 end
