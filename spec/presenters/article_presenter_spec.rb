@@ -18,9 +18,9 @@ describe ArticlePresenter do
 
       describe 'div.relations' do
         subject{ Capybara.string(presenter.relations).find('div.relations') }
-        it{ should have_selector 'div.enemies' }
+        it{ should have_selector 'h2', text:'Enemies' }
+        it{ should have_selector 'ul.enemies' }
         it{ should have_selector 'div.friends' }
-        it{ should have_content 'Enemies:' }
         it{ should have_content 'Friends:' }
       end # div.relations
     end # with enemies&friends
@@ -34,21 +34,23 @@ describe ArticlePresenter do
 
     context 'with inverse enemy' do
       before{ create(:enemy, article:violator, relative:spawn)}
+      subject{ Capybara.string(presenter.relations)}
+      it{ should have_selector 'h2', text:'Enemies' }
 
-      describe 'div.enemies' do
-        subject{ Capybara.string(presenter.relations).find('div.enemies')}
-        it{ should have_content 'Enemies:' }
-        it{ should have_selector 'div.relation.enemy', count:1 }
+      describe 'ul.enemies' do
+        subject{ Capybara.string(presenter.relations).find('ul.enemies')}
+        it{ should have_selector 'li.relation.enemy', count:1 }
       end
     end
 
     context 'with enemies' do
       before{ create(:enemy, article:spawn, relative:violator)}
+      subject{ Capybara.string(presenter.relations)}
+      it{ should have_selector 'h2', text:'Enemies' }
 
-      describe 'div.enemies' do
-        subject{ Capybara.string(presenter.relations).find('div.enemies')}
-        it{ should have_content 'Enemies:' }
-        it{ should have_selector 'div.relation.enemy', count:1 }
+      describe 'ul.enemies' do
+        subject{ Capybara.string(presenter.relations).find('ul.enemies')}
+        it{ should have_selector 'li.relation.enemy', count:1 }
       end
     end
   end

@@ -4,8 +4,10 @@ describe 'projects/show.html.erb' do
   let(:project){ create(:project, title:'Spawn')}
 
   before do
+    controller.stub(:current_user){ create(:user)}
     project.articles << create(:character)
     assign(:project, project)
+    assign(:article, Article.new)
     render
   end
 
@@ -15,10 +17,7 @@ describe 'projects/show.html.erb' do
   describe 'div.project' do
     subject{ Capybara.string(rendered).find('div.project')}
     it{ should have_selector 'div.articles' }
-
-    #describe "form#new_article" do
-    #  subject{ Capybara.string(rendered).find('div.project form#new_article')}
-    #  it{ should have_select 'Article' }
-    #end
+    it{ should have_selector 'h2', text:'New Article' }
+    it{ should have_selector 'form#new_article' }
   end
 end

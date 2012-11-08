@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'articles/new.html.erb' do
   before do
+    controller.stub(:current_user){ create(:user)}
     create(:project, title:'Spawn')
     assign(:article, Article.new)
     render

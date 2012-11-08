@@ -1,8 +1,9 @@
 <% present enemy do |presenter| %>
 
-<div class="relation enemy">
+<li class="relation enemy">
+  <%= presenter.thumb(main) %>
   <%= presenter.name(main) %>
   <%= presenter.actions(main) %>
-</div>
+</li>
 
 <% end %>

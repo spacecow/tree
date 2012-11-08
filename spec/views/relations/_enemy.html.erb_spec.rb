@@ -8,8 +8,8 @@ describe 'relations/_enemy.html.erb' do
   context "enemy" do
     before{ render partial:'relations/enemy', locals:{enemy:enemy, main:spawn}}
 
-    describe 'div.relation.enemy' do
-      subject{ Capybara.string(rendered).find('div.relation.enemy')}
+    describe 'li.relation.enemy' do
+      subject{ Capybara.string(rendered).find('li.relation.enemy')}
       it{ should have_selector 'div.name', text:'Violator' }
     end
   end # enemy
@@ -17,8 +17,8 @@ describe 'relations/_enemy.html.erb' do
   context "inverse enemy" do
     before{ render partial:'relations/enemy', locals:{enemy:enemy, main:violator}}
 
-    describe 'div.relation.enemy' do
-      subject{ Capybara.string(rendered).find('div.relation.enemy')}
+    describe 'li.relation.enemy' do
+      subject{ Capybara.string(rendered).find('li.relation.enemy')}
       it{ should have_selector 'div.name', text:'Spawn' }
     end
   end # inverse enemy

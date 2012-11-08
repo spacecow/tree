@@ -3,6 +3,7 @@
 <% present @article do |presenter| %>
 
 <div class="article">
+  <%= presenter.profile_image %>
   <%= presenter.relations %>
 
   <%= simple_form_for [@article,@relation], url:article_relations_path(@article,@relation) do |f| %>

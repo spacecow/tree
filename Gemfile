@@ -5,6 +5,8 @@ gem 'mysql2'
 gem 'jquery-rails'
 gem 'cancan'
 gem 'simple_form'
+gem 'carrierwave'
+gem 'rmagick'
 #gem 'strong_parameters'
 
 group :assets do

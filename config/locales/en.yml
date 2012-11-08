@@ -4,11 +4,14 @@
 en:
   history:
     one: History
+  image:
+    one: Image
   project:
     one: Project
     other: Projects
 
   labels:
+    crop: Crop %{o}
     new: New %{o}
 
   successes:

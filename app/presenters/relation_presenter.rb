@@ -11,14 +11,14 @@ class RelationPresenter < BasePresenter
     end
   end
 
+  def history_form
+    h.render 'histories/form', history:History.new, article_id:relation.article_id, relation_id:relation.id
+  end
+
   def histories
     h.content_tag :div, class:'histories' do
       h.render relation.histories
     end if relation.histories.present?
-  end
-
-  def history_form
-    h.render 'histories/form', history:History.new, article_id:relation.article_id, relation_id:relation.id
   end
 
   def name(main)
@@ -29,5 +29,11 @@ class RelationPresenter < BasePresenter
         h.link_to relation.article_name, h.article_path(relation.article)
       end
     end  
+  end
+
+  def thumb(main)
+    h.content_tag :div, class:%w(thumb image).join(' ') do
+      h.image_tag relation.image_url(:thumb,main).to_s
+    end
   end
 end

@@ -10,12 +10,12 @@ class HistoryPresenter < BasePresenter
   def issue
     h.content_tag :div, class:'issue' do
       "No.#{history.issue.to_s}"
-    end
+    end unless history.issue.nil?
   end
 
   def page
     h.content_tag :div, class:'page' do
-      "pp.#{history.page.to_s}"
-    end
+      "p.#{history.page.to_s}"
+    end unless history.page.nil?
   end
 end

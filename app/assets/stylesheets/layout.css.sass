@@ -1,0 +1,38 @@
+$blue: #4B7399
+
+body
+  font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif
+a
+  text-decoration: none 
+  color: $blue
+  text-shadow: 1px 1px 1px #aaa
+  &:hover
+    color: #eee
+    text-shadow: 1px 1px 1px $blue 
+
+div.clear
+  clear: both
+  height: 0
+  overflow: hidden
+
+ul
+  margin: 0
+  padding: 0
+  li
+    min-height: 60px
+    border: 1px solid white
+    padding: 5px 0 5px 70px 
+    list-style-type: none
+    div.thumb.image
+      height: 60px
+      margin-left: -65px
+      float: left
+    &:hover
+      background: #eee
+      border-color: #ccc
+
+div.article
+  padding-left: 310px
+  div.profile.image
+    margin-left: -310px
+    float: left

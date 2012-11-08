@@ -1,6 +1,14 @@
 class ProjectPresenter < BasePresenter
   presents :project
 
+  def article_form(article, project_id)
+    output = nil
+    h.present article do |presenter|
+      output = presenter.form(project_id)
+    end
+    output
+  end 
+
   def articles
     h.content_tag :div, class:'articles' do
       characters+events
@@ -8,8 +16,11 @@ class ProjectPresenter < BasePresenter
   end
 
   def characters
-    h.content_tag :div, class:'characters' do
-      "Characters: #{h.render partial:'articles/character', collection:project.characters}".html_safe
+    h.content_tag(:h2) do
+      'Characters'
+    end +
+    h.content_tag(:ul, class:'characters') do
+      h.render partial:'articles/character', collection:project.characters
     end if project.characters.present?
   end
 

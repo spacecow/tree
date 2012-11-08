@@ -1,7 +1,9 @@
 <% present character do |presenter| %>
 
-<div class='article character'>
+<li class='article character'>
+  <%= presenter.thumb %>
   <%= presenter.name %>
-</div>
+  <div class="clear"></div>
+</li>
 
 <% end %>

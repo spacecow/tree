@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def show
+    @article = Article.new
   end
 
   def new

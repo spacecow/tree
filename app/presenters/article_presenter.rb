@@ -8,9 +8,15 @@ class ArticlePresenter < BasePresenter
   end
 
   def enemies
-    h.content_tag :div, class:'enemies' do
-      "Enemies: #{h.render partial:'relations/enemy', collection:article.enemies, locals:{main:article}}".html_safe
+    h.content_tag(:h2) do
+      "Enemies"
+    end + 
+    h.content_tag(:ul, class:'enemies') do
+      h.render partial:'relations/enemy', collection:article.enemies, locals:{main:article}
     end if article.enemies.present?
+  end
+  def form(project_id=nil)
+    h.render 'articles/form', article:article, project_id:project_id if h.can? :new, Article
   end
   def friends
     h.content_tag :div, class:'friends' do
@@ -18,9 +24,21 @@ class ArticlePresenter < BasePresenter
     end if article.friends.present?
   end
 
+  def profile_image
+    h.content_tag :div, class:%w(profile image).join(' ') do
+      h.image_tag article.image_url(:profile).to_s
+    end
+  end
+
   def relations
     h.content_tag :div, class:'relations' do
       enemies+friends  
     end if article.all_relations.present?
+  end
+
+  def thumb
+    h.content_tag :div, class:%w(thumb image).join(' ') do
+      h.image_tag article.image_url(:thumb).to_s
+    end
   end
 end

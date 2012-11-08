@@ -5,6 +5,6 @@ describe 'histories/_history.html.erb' do
   before{ render history }
   describe 'div.history' do
     subject{ Capybara.string(rendered).find('div.history')}
-    it{ should have_content 'No.1, pp.9, sworn enemies' }
+    it{ should have_content 'No.1 p.9 sworn enemies' }
   end
 end

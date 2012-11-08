@@ -1,5 +1,6 @@
 Tree::Application.routes.draw do
   get 'signin' => 'sessions#create'
+  get 'signout' => 'sessions#destroy'
 
   resources :projects, only: [:show,:index,:new,:create]
 
