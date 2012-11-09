@@ -1,7 +1,7 @@
 class Relation < ActiveRecord::Base
   belongs_to :article
   belongs_to :relative, class_name:'Article'
-  has_many :histories
+  has_many :histories, as: :historable
 
   attr_accessible :relative_id
 

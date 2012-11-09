@@ -29,9 +29,15 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article.type = params[:article].delete(:type) if params[:article][:type].present?
+    @article.type = params[:article].delete(:type) if params[:article] && params[:article][:type].present?
     if @article.update_attributes(params[:article])
-      redirect_to article_path(@article)
+      if params[:article][:image].present?
+        render :crop
+      else
+        redirect_to article_path(@article)
+      end
+    else
+      # error handling
     end
   end
 end

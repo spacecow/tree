@@ -4,7 +4,6 @@
   <%= f.input :name, wrapper_html:{class:'name'} %>
   <%= f.input :type, as: :select, collection:Article::TYPES %>
   <%= f.input :image %>
-  <%= f.button :submit %>
   <% if project_id.nil? %>
     <div>
       <%= label_tag :project_id %>
@@ -13,4 +12,5 @@
   <% else %>
     <%= hidden_field_tag :project_id, project_id %>
   <% end %>
+  <%= f.button :submit %>
 <% end %>

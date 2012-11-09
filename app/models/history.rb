@@ -1,5 +1,5 @@
 class History < ActiveRecord::Base
-  belongs_to :relation
+  belongs_to :historable, polymorphic:true
   attr_accessible :content, :issue, :page
 
   validates :content, presence:true

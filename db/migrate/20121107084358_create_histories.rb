@@ -2,7 +2,8 @@ class CreateHistories < ActiveRecord::Migration
   def change
     create_table :histories do |t|
       t.string :content
-      t.integer :relation_id
+      t.integer :historable_id
+      t.string :historable_type
       t.integer :issue
       t.integer :page
 

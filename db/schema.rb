@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(:version => 20121108025657) do
 
   create_table "histories", :force => true do |t|
     t.string   "content"
-    t.integer  "relation_id"
+    t.integer  "historable_id"
+    t.string   "historable_type"
     t.integer  "issue"
     t.integer  "page"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "projects", :force => true do |t|

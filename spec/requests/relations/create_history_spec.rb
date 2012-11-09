@@ -20,7 +20,7 @@ describe 'Relation' do
   context "create history" do
     before{ create_history.call }
     subject{ History.last }
-    its(:relation_id){ should be enemy.id }
+    its(:historable_id){ should be enemy.id }
     its(:content){ should eq 'sworn enemies' }
     its(:issue){ should be 1 }
     its(:page){ should be 9 }

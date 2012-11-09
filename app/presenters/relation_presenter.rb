@@ -3,11 +3,9 @@ class RelationPresenter < BasePresenter
 
   def actions(main)
     h.content_tag :div, class:'actions' do
-      if main.id == relation.article.id
-        "(#{h.link_to 'Relation', h.article_relation_path(relation.article, relation, main_id:main.id)})".html_safe
-      else
-        "(#{h.link_to 'Relation', h.article_relation_path(relation.article, relation, main_id:main.id)})".html_safe
-      end
+      ("(" +
+      h.link_to('Relation', h.article_relation_path(relation.article, relation, main_id:main.id)) +
+      ")").html_safe
     end
   end
 

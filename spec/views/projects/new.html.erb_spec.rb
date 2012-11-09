@@ -8,7 +8,7 @@ describe 'projects/new.html.erb' do
   end
 
   describe 'form#new_project' do
-    subject{ Capybara.string(rendered) }
+    subject{ Capybara.string(rendered).find('form#new_project')}
     it{ should have_field('Title', with:nil) }
     it{ should have_button('Create Project') }
   end
