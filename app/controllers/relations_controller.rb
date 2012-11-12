@@ -9,7 +9,7 @@ class RelationsController < ApplicationController
   def create
     @relation.type = params[:type]
     if @relation.save
-      redirect_to root_path
+      redirect_to article_path(@article), notice:created(:relation)
     end
   end
 end

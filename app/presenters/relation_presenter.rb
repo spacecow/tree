@@ -9,6 +9,10 @@ class RelationPresenter < BasePresenter
     end
   end
 
+  def form(article)
+    h.render 'relations/form', article:article, relation:relation if h.can? :new, Relation
+  end
+
   def history_form
     h.render 'histories/form', history:History.new, article_id:relation.article_id, relation_id:relation.id
   end

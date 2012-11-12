@@ -22,5 +22,7 @@ describe 'Articles, create relation' do
     its(:article_id){ should be article.id }
     its(:relative_id){ should be enemy.id }
     its(:type){ should eq 'Enemy' }
+    specify{ current_path.should eq article_path(article)}
+    specify{ page.should have_selector 'div#flash_notice', text:'Relation created' }
   end
 end

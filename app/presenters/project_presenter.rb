@@ -15,20 +15,17 @@ class ProjectPresenter < BasePresenter
     end if project.articles.present?
   end
 
-  def characters
+  def listing(sing)
     h.content_tag(:h2) do
-      'Characters'
+      h.pl(sing)
     end +
-    h.content_tag(:ul, class:'characters') do
-      h.render partial:'articles/character', collection:project.characters
-    end if project.characters.present?
+    h.content_tag(:ul, class:sing.to_s.pluralize) do
+      h.render partial:"articles/#{sing}", collection:project.send(sing.to_s.pluralize)
+    end if project.send(sing.to_s.pluralize).present?
   end
 
-  def events
-    h.content_tag :div, class:'events' do
-      "Events: #{h.render partial:'articles/event', collection:project.events}".html_safe
-    end if project.events.present?
-  end
+  def characters; listing(:character) end
+  def events; listing(:event) end
 
   def projects
     h.content_tag :div, class:'projects' do

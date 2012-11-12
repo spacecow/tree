@@ -7,15 +7,7 @@
 <div class="article">
   <%= presenter.profile_image %>
   <%= presenter.relations %>
-
-  <%= simple_form_for [@article,@relation], url:article_relations_path(@article,@relation) do |f| %>
-    <%= f.input :relative_id, as: :select, collection:Article.all.reject{|e| e==@article} %>
-    <div>
-      <%= label_tag :type %>
-      <%= select_tag :type, '<option>Enemy</option>'.html_safe %>
-    </div>
-    <%= f.button :submit, 'Create Relation' %>
-  <% end %>
+  <%= presenter.relation_form(@relation) %>
 </div>
 
 <% end %>

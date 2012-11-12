@@ -5,6 +5,7 @@ describe 'projects/show.html.erb' do
 
   before do
     controller.stub(:current_user){ create(:user)}
+    view.stub(:pl){ nil }
     project.articles << create(:character)
     assign(:project, project)
     assign(:article, Article.new)

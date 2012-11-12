@@ -1,0 +1,2 @@
+class ParticipantPresenter < RelationPresenter
+end

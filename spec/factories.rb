@@ -23,6 +23,9 @@ FactoryGirl.define do
     factory :friend do
       type 'Friend'
     end
+    factory :participant do
+      type 'Participant'
+    end
   end
 
   factory :project do

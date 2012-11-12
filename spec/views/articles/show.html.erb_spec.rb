@@ -10,6 +10,7 @@ describe 'articles/show.html.erb' do
       controller.stub(:current_user){ create(:user)}
       assign(:article,spawn)
       assign(:relation,Relation.new)
+      view.stub(:pl){ nil }
       render
     end
 
@@ -36,6 +37,7 @@ describe 'articles/show.html.erb' do
       controller.stub(:current_user){ nil }
       assign(:article,spawn)
       assign(:relation,Relation.new)
+      view.stub(:pl){ t(:enemy,count:2) }
       render
     end
 
@@ -54,6 +56,7 @@ describe 'articles/show.html.erb' do
       controller.stub(:current_user){ nil }
       assign(:article,violator)
       assign(:relation,Relation.new)
+      view.stub(:pl){ t(:enemy,count:2) }
       render
     end
 

@@ -1,0 +1,8 @@
+<%= simple_form_for [article,relation], url:article_relations_path(article,relation) do |f| %>
+  <%= f.input :relative_id, as: :select, collection:Article.all.reject{|e| e==article} %>
+  <div>
+    <%= label_tag :type %>
+    <%= select_tag :type, Relation.type_options %>
+  </div>
+  <%= f.button :submit, 'Create Relation' %>
+<% end %>

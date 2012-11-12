@@ -27,5 +27,7 @@ class Article < ActiveRecord::Base
     relations.where(type:'Enemy') + inverse_relations.where(type:'Enemy')
   end
   def friends; relations.where(type:'Friend') end
+  def participants; relations.where(type:'Participant') end
+  def participant_ins; inverse_relations.where(type:'Participant') end
   def title; "#{name}: #{type}" end
 end

@@ -2,14 +2,26 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  character:
+    other: Characters
   edit: Edit
+  enemy:
+    other: Enemies
+  event:
+    other: Events
   history:
     one: History
   image:
     one: Image
+  participant:
+    other: Participants
+  participant_in:
+    other: Participant in
   project:
     one: Project
     other: Projects
+  relation:
+    one: Relation
 
   labels:
     crop: Crop %{o}
