@@ -8,7 +8,7 @@ class Article < ActiveRecord::Base
   has_many :inverse_relatives, through: :inverse_relations, source: :article
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  attr_accessible :name, :image, :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :name, :description, :image, :crop_x, :crop_y, :crop_w, :crop_h
 
   mount_uploader :image, ImageUploader
 
