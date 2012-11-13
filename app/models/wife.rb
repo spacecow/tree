@@ -1,0 +1,2 @@
+class Wife < Relation
+end

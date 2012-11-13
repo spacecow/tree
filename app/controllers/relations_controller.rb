@@ -11,6 +11,8 @@ class RelationsController < ApplicationController
   def create
     if params[:type] == 'Participant in'
       @relation.type = 'Participant' 
+    elsif params[:type] == 'Wife'
+      @relation.type = 'Husband' 
     else
       @relation.type = params[:type]
     end
@@ -22,7 +24,7 @@ class RelationsController < ApplicationController
   private
 
     def load_article
-      if params[:type] == 'Participant in'
+      if ['Participant in','Wife'].include? params[:type]
         relative_id = params[:relation].delete(:relative_id)
         params[:relation][:relative_id] = params[:article_id]
         @article = Article.find(relative_id)
