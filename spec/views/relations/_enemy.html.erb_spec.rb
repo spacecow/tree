@@ -6,7 +6,7 @@ describe 'relations/_enemy.html.erb' do
   let(:enemy){ create(:enemy, article:spawn, relative:violator)}
 
   context "enemy" do
-    before{ render partial:'relations/enemy', locals:{enemy:enemy, main:spawn}}
+    before{ render partial:'relations/relation', locals:{relation:enemy, main:spawn, relation_type: :enemy}}
 
     describe 'li.relation.enemy' do
       subject{ Capybara.string(rendered).find('li.relation.enemy')}
@@ -15,7 +15,7 @@ describe 'relations/_enemy.html.erb' do
   end # enemy
 
   context "inverse enemy" do
-    before{ render partial:'relations/enemy', locals:{enemy:enemy, main:violator}}
+    before{ render partial:'relations/relation', locals:{relation:enemy, main:violator, relation_type: :enemy}}
 
     describe 'li.relation.enemy' do
       subject{ Capybara.string(rendered).find('li.relation.enemy')}

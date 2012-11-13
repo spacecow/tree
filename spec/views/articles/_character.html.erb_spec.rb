@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'articles/_character.html.erb' do
   let!(:character){ Character.create!(name:'Spawn')}
-  before{ render partial:'articles/character', locals:{character:character}}
+  before{ render partial:'articles/article', locals:{article:character, article_type: :character}}
 
   describe 'li.article.character' do
     subject{ Capybara.string(rendered).find('div.article.character')}

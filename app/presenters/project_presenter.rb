@@ -20,7 +20,7 @@ class ProjectPresenter < BasePresenter
       h.pl(sing)
     end +
     h.content_tag(:ul, class:sing.to_s.pluralize) do
-      h.render partial:"articles/#{sing}", collection:project.send(sing.to_s.pluralize)
+      h.render partial:"articles/article", collection:project.send(sing.to_s.pluralize), locals:{article_type:sing}
     end if project.send(sing.to_s.pluralize).present?
   end
 

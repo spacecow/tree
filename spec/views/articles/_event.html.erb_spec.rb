@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe 'articles/_event.html.erb' do
+describe 'articles/_article.html.erb' do
   let!(:event){ Character.create!(name:'Hinckley')}
-  before{ render partial:'articles/event', locals:{event:event}}
+  before{ render partial:'articles/article', locals:{article:event, article_type: :event}}
 
   describe 'li.article.event' do
     describe 'div.name' do

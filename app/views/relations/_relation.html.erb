@@ -1,6 +1,6 @@
-<% present husband do |presenter| %>
+<% present relation do |presenter| %>
 
-<li class="relation husband">
+<li class="relation <%= relation_type %>">
   <%= presenter.thumb(main) %>
   <%= presenter.head(main) %>
   <%= presenter.body %>

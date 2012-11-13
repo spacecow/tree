@@ -26,7 +26,7 @@ class ArticlePresenter < BasePresenter
       h.pl(sing)
     end +
     h.content_tag(:ul, class:sing.to_s.pluralize) do
-      h.render partial:"relations/#{sing}", collection:article.send(sing.to_s.pluralize), locals:{main:article}
+      h.render partial:"relations/relation", collection:article.send(sing.to_s.pluralize), locals:{main:article, relation_type:sing}
     end if article.send(sing.to_s.pluralize).present?) || "").html_safe
   end
 
