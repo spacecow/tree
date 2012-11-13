@@ -1,0 +1,2 @@
+class FriendPresenter < RelationPresenter
+end

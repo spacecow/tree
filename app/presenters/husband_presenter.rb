@@ -1,0 +1,2 @@
+class HusbandPresenter < RelationPresenter
+end

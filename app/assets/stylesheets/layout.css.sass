@@ -1,3 +1,5 @@
+@import "compass/css3/columns"
+
 $blue: #4B7399
 
 body
@@ -31,11 +33,18 @@ ul
       background: #eee
       border-color: #ccc
 
+div.articles
+  +column-count(3)
+
 div.article
   padding-left: 310px
   div.profile.image
     margin-left: -310px
     float: left
+
+div.relations
+  span.actions
+    margin-left: 2px
 
 div.subtitle
   margin-top: -20px

@@ -19,6 +19,8 @@ class ArticlePresenter < BasePresenter
     h.render 'histories/form', history:History.new, article_id:article.id, relation_id:nil if h.can? :new, History
   end
 
+  def husbands; listing(:husband) end
+
   def listing(sing)
     ((h.content_tag(:h2) do
       h.pl(sing)
@@ -53,7 +55,7 @@ class ArticlePresenter < BasePresenter
 
   def relations
     h.content_tag :div, class:'relations' do
-      enemies+friends+participants+participant_ins
+      husbands+wifes+enemies+friends+participants+participant_ins
     end.html_safe if article.all_relations.present?
   end
 
@@ -68,4 +70,6 @@ class ArticlePresenter < BasePresenter
       h.image_tag article.image_url(:thumb) if article.image_url(:thumb)
     end
   end
+
+  def wifes; listing(:wife) end
 end

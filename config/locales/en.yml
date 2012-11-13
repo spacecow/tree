@@ -9,8 +9,12 @@ en:
     other: Enemies
   event:
     other: Events
+  friend:
+    other: Friends
   history:
     one: History
+  husband:
+    other: Husbands
   image:
     one: Image
   participant:
@@ -22,6 +26,8 @@ en:
     other: Projects
   relation:
     one: Relation
+  wife:
+    other: Wives
 
   labels:
     add: Add %{o}
