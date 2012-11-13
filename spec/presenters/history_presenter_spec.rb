@@ -6,29 +6,43 @@ describe HistoryPresenter do
 
   describe '#content' do
     subject{ Capybara.string(presenter.content)}
-    it{ should have_selector 'div.content', text:'sworn enemies' }
+    it{ should have_selector 'span.content', text:'sworn enemies' }
   end # #content
 
-  describe '#issue' do
-    context "exists" do
-      before{ history.issue = 2 }
-      subject{ Capybara.string(presenter.issue)}
-      it{ should have_selector 'div.issue', text:'No.2' }
+  describe '#reference' do
+    context "issue and page" do
+      before do
+        history.issue = 2
+        history.page = 1
+      end
+      subject{ Capybara.string(presenter.reference)}
+      it{ should have_selector 'span.reference', text:'[no.2 p.1]' }
     end
-    context "doesn't exists" do
-      before{ history.issue = nil }
-      it{ presenter.issue.should be_nil }
-    end
-  end # #content
 
-  describe '#page' do
-    context "exists" do
-      before{ history.page = 10 }
-      subject{ Capybara.string(presenter.page)}
-      it{ should have_selector 'div.page', text:'p.10' }
+    context "issue no page" do
+      before do
+        history.issue = 2
+        history.page = nil
+      end
+      subject{ Capybara.string(presenter.reference)}
+      it{ should have_selector 'span.reference', text:'[no.2]' }
     end
-    context "doesn't exists" do
-      it{ presenter.page.should be_nil }
+
+    context "page no issue" do
+      before do
+        history.issue = nil 
+        history.page = 1  
+      end
+      subject{ Capybara.string(presenter.reference)}
+      it{ should have_selector 'span.reference', text:'[p.1]' }
+    end
+
+    context "no page no issue" do
+      before do
+        history.issue = nil
+        history.page = nil
+      end
+      it{ presenter.reference.should be_nil }
     end
   end # #content
 end

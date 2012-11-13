@@ -9,6 +9,16 @@ class ArticlePresenter < BasePresenter
 
   def friends; listing(:friend) end
 
+  def histories
+    h.content_tag :div, class:'histories' do
+      h.render article.histories
+    end if article.histories.present?
+  end
+
+  def history_form
+    h.render 'histories/form', history:History.new, article_id:article.id, relation_id:nil if h.can? :new, History
+  end
+
   def listing(sing)
     ((h.content_tag(:h2) do
       h.pl(sing)
@@ -43,10 +53,6 @@ class ArticlePresenter < BasePresenter
 
   def relations
     h.content_tag :div, class:'relations' do
-      #enemies+friends+participants
-      #p participants.class
-      #p enemies.class
-      #participants.safe_concat(enemies)
       enemies+friends+participants+participant_ins
     end.html_safe if article.all_relations.present?
   end

@@ -17,8 +17,8 @@ describe 'articles/show.html.erb' do
     subject{ Capybara.string(rendered)}
     it{ should have_selector('h1', text:'Spawn: Character') }
     
-    describe 'div.actions' do
-      subject{ Capybara.string(rendered).find('div.actions')}
+    describe 'span.actions' do
+      subject{ Capybara.string(rendered).find('span.actions')}
       it{ should have_xpath("//a", text:'Edit') }
     end
 

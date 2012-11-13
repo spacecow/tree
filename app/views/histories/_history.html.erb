@@ -1,9 +1,8 @@
 <% present history do |presenter| %>
 
-<div class='history'>
-  <%= presenter.issue %>
-  <%= presenter.page %>
+<span class='history'>
   <%= presenter.content %>
-</div>
+  <%= presenter.reference %>
+</span>
 
 <% end %>

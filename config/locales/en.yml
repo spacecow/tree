@@ -24,6 +24,7 @@ en:
     one: Relation
 
   labels:
+    add: Add %{o}
     crop: Crop %{o}
     new: New %{o}
 

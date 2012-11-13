@@ -7,6 +7,8 @@ class Article < ActiveRecord::Base
   has_many :inverse_relations, class_name:'Relation', foreign_key:'relative_id'
   has_many :inverse_relatives, through: :inverse_relations, source: :article
 
+  has_many :histories, as: :historable
+
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   attr_accessible :name, :description, :image, :crop_x, :crop_y, :crop_w, :crop_h
 

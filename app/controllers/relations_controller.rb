@@ -1,5 +1,7 @@
 class RelationsController < ApplicationController
-  load_and_authorize_resource :article
+  before_filter :load_article, only: :create
+  load_resource :article, except: :create
+  authorize_resource :article
   load_and_authorize_resource :relation, through: :article
 
   def show
@@ -7,9 +9,25 @@ class RelationsController < ApplicationController
   end
 
   def create
-    @relation.type = params[:type]
+    if params[:type] == 'Participant in'
+      @relation.type = 'Participant' 
+    else
+      @relation.type = params[:type]
+    end
     if @relation.save
       redirect_to article_path(@article), notice:created(:relation)
     end
   end
+
+  private
+
+    def load_article
+      if params[:type] == 'Participant in'
+        relative_id = params[:relation].delete(:relative_id)
+        params[:relation][:relative_id] = params[:article_id]
+        @article = Article.find(relative_id)
+      else
+        @article = Article.find(params[:article_id])
+      end
+    end
 end

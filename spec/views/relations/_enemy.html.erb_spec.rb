@@ -10,7 +10,7 @@ describe 'relations/_enemy.html.erb' do
 
     describe 'li.relation.enemy' do
       subject{ Capybara.string(rendered).find('li.relation.enemy')}
-      it{ should have_selector 'div.name', text:'Violator' }
+      it{ should have_selector 'div.head span.name', text:'Violator' }
     end
   end # enemy
 
@@ -19,7 +19,7 @@ describe 'relations/_enemy.html.erb' do
 
     describe 'li.relation.enemy' do
       subject{ Capybara.string(rendered).find('li.relation.enemy')}
-      it{ should have_selector 'div.name', text:'Spawn' }
+      it{ should have_selector 'div.head span.name', text:'Spawn' }
     end
   end # inverse enemy
 end

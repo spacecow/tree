@@ -9,7 +9,7 @@ class Relation < ActiveRecord::Base
   validates :article_id, presence:true
   validates :type, presence:true
 
-  TYPES = %w(Enemy Friend Participant)
+  TYPES = %w(Enemy Friend Participant) + ['Participant in']
 
   def article_name; article.name end
   def image_url(version,main)
