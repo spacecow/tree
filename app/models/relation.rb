@@ -3,13 +3,14 @@ class Relation < ActiveRecord::Base
   belongs_to :relative, class_name:'Article'
   has_many :histories, as: :historable
 
-  attr_accessible :relative_id
+  attr_reader :relative_token
+  attr_accessible :relative_token
 
   validates :relative_id, presence:true
   validates :article_id, presence:true
   validates :type, presence:true
 
-  TYPES = %w(Enemy Friend Participant) + ['Participant in'] + %w(Husband Wife)
+  TYPES = ['Enemy','Friend','Participant','Participant in','Husband','Wife','Victim','Killed by']
 
   def article_name; article.name end
   def image_url(version,main)
@@ -19,6 +20,9 @@ class Relation < ActiveRecord::Base
     main.id==article.id ? relative.name : article.name
   end
   def relative_name; relative.name end
+  def relative_token=(token)
+    self.relative_id = Article.id_from_token(token)
+  end
   def title(main); "#{main.name} - #{Kernel.const_get(type).type(main.id==relative.id)}: #{inverse_name(main)}" end
 
   class << self

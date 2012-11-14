@@ -21,6 +21,8 @@ class ArticlePresenter < BasePresenter
 
   def husbands; listing(:husband) end
 
+  def killed_bies; listing(:killed_by) end
+
   def listing(sing)
     ((h.content_tag(:h2) do
       h.pl(sing)
@@ -55,7 +57,7 @@ class ArticlePresenter < BasePresenter
 
   def relations
     h.content_tag :div, class:'relations' do
-      husbands+wifes+enemies+friends+participants+participant_ins
+      husbands+wifes+enemies+friends+participants+participant_ins+victims+killed_bies
     end.html_safe if article.all_relations.present?
   end
 
@@ -71,5 +73,6 @@ class ArticlePresenter < BasePresenter
     end
   end
 
+  def victims; listing(:victim) end
   def wifes; listing(:wife) end
 end

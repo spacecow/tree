@@ -25,7 +25,7 @@ describe 'articles/show.html.erb' do
     describe 'div.article' do
       describe "form#new_relation" do
         subject{ Capybara.string(rendered).find("div.article form#new_relation")}
-        it{ should have_select 'Relative', options:['Violator'], selected:nil}
+        it{ should have_field 'Relative', with:nil}
         it{ should have_select 'Type', options:['Enemy'], selected:nil }
         it{ should have_button 'Create Relation' }
       end # from#new_relation

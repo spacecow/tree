@@ -10,13 +10,13 @@ describe RelationPresenter do
     describe 'span.actions' do
       context 'spawn as main' do
         subject{ Capybara.string(presenter.send(:actions,spawn)).find('span.actions') }
-        it{ should have_content '(Relation)' }
+        it{ should have_content '(Relation Delete)' }
         it{ should have_xpath "//a[@href='#{article_relation_path(spawn,enemy,main_id:spawn.id)}']", text:'Relation' }
       end # spawn as main
 
       context 'violator as main' do
         subject{ Capybara.string(presenter.send(:actions,violator)).find('span.actions') }
-        it{ should have_content '(Relation)' }
+        it{ should have_content '(Relation Delete)' }
         it{ should have_xpath "//a[@href='#{article_relation_path(spawn,enemy,main_id:violator.id)}']", text:'Relation' }
       end # violator as main
     end

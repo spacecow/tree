@@ -1,2 +1,0 @@
-class FriendPresenter < RelationPresenter
-end

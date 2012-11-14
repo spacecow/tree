@@ -1,2 +1,0 @@
-class CharacterPresenter < ArticlePresenter
-end

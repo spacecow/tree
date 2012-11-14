@@ -5,6 +5,10 @@ class ProjectsController < ApplicationController
     @article = Article.new
   end
 
+  def index
+    @projects = Project.all
+  end
+
   def new
     @project = Project.new
   end

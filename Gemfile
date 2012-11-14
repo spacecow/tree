@@ -7,6 +7,7 @@ gem 'cancan'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'rmagick'
+#gem 'poltergeist'
 #gem 'strong_parameters'
 
 group :assets do

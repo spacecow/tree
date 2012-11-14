@@ -6,6 +6,14 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
+
+  # --- Poltergeist ----
+  #require 'capybara/poltergeist'
+  #Capybara.javascript_driver = :poltergeist
+  #Capybara.register_driver :poltergeist do |app|
+  #  Capybara::Poltergeist::Driver.new(app, debug:true)
+  #end
+
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
@@ -14,10 +22,9 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
     config.order = "random"
 
-    config.run_all_when_everything_filtered = true
-
     #focus filter
     config.filter_run :focus => true
+    config.run_all_when_everything_filtered = true
 
     #factorygirl shortcut
     config.include FactoryGirl::Syntax::Methods

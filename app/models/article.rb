@@ -30,8 +30,30 @@ class Article < ActiveRecord::Base
   end
   def friends; relations.where(type:'Friend') + inverse_relations.where(type:'Friend') end
   def husbands; relations.where(type:'Husband') end
+  def killed_bies; inverse_relations.where(type:'Victim') end
   def participants; relations.where(type:'Participant') end
   def participant_ins; inverse_relations.where(type:'Participant') end
   def title; "#{name}: #{type}" end
+  def victims; relations.where(type:'Victim') end
   def wives; inverse_relations.where(type:'Husband') end
+
+  class << self 
+    def id_from_token(token)
+      token.gsub!(/<<<(.+?):(.+?)>>>/) do
+        article = new(name:$1)
+        article.type = $2
+        article.save
+        article.id
+      end
+      token
+    end
+    def token(query)
+      articles = where("name like ?", "%#{query}%") 
+      if articles.empty?
+        [{id: "<<<#{query}>>>", name: "New \"#{query}\""}] 
+      else
+        articles
+      end
+    end
+  end
 end

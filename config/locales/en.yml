@@ -4,6 +4,7 @@
 en:
   character:
     other: Characters
+  delete: Delete
   edit: Edit
   enemy:
     other: Enemies
@@ -15,6 +16,8 @@ en:
     one: History
   husband:
     other: Husbands
+  killed_by:
+    other: Killed by
   image:
     one: Image
   participant:
@@ -26,6 +29,8 @@ en:
     other: Projects
   relation:
     one: Relation
+  victim:
+    other: Victims
   wife:
     other: Wives
 
@@ -36,3 +41,4 @@ en:
 
   successes:
     created: "%{o} created"
+    deleted: "%{o} deleted"

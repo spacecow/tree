@@ -5,7 +5,7 @@ Tree::Application.routes.draw do
   resources :projects, only: [:show,:index,:new,:create]
 
   resources :articles, only: [:show,:index,:new,:create,:edit,:update] do
-    resources :relations, only: [:show,:create]
+    resources :relations, only: [:show,:create,:destroy]
   end
 
   resources :histories, only: :create

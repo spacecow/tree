@@ -4,7 +4,9 @@ class RelationPresenter < BasePresenter
   def actions(main)
     h.content_tag :span, class:'actions' do
       ("(" +
-      h.link_to('Relation', h.article_relation_path(relation.article, relation, main_id:main.id)) +
+      relation_link(main) +
+      " " +
+      delete_relation_link +
       ")").html_safe
     end
   end
@@ -13,6 +15,10 @@ class RelationPresenter < BasePresenter
     h.content_tag :body, class:'head' do
       histories
     end if relation.histories.present?
+  end
+
+  def delete_relation_link
+    h.link_to(h.t(:delete), h.article_relation_path(relation.article, relation), method: :delete)
   end
 
   def form(article)
@@ -43,6 +49,10 @@ class RelationPresenter < BasePresenter
         h.link_to relation.article_name, h.article_path(relation.article)
       end
     end  
+  end
+
+  def relation_link(main)
+    h.link_to(h.t(:relation,count:1), h.article_relation_path(relation.article, relation, main_id:main.id))
   end
 
   def thumb(main)

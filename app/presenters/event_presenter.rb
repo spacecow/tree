@@ -1,2 +1,0 @@
-class EventPresenter < ArticlePresenter
-end

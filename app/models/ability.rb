@@ -8,7 +8,7 @@ class Ability
     if user
       can :create, Project
       can [:create,:update], Article
-      can :create, Relation
+      can [:create,:destroy], Relation
       can :create, History
     end
   end

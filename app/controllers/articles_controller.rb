@@ -5,6 +5,12 @@ class ArticlesController < ApplicationController
     @relation = Relation.new
   end
 
+  def index
+    respond_to do |f|
+      f.json { render json: @articles.token(params[:q])}
+    end
+  end
+
   def create
     @project = params[:project_id] && Project.find(params[:project_id])
     authorize! :show, @project

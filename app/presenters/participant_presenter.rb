@@ -1,2 +1,0 @@
-class ParticipantPresenter < RelationPresenter
-end

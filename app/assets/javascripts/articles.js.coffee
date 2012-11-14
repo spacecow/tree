@@ -1,6 +1,8 @@
 jQuery ->
   new AvatarCropper()
 
+  $('input#relation_relative_token').tokenInput '/articles.json'
+
 class AvatarCropper
   constructor: ->
     $('img#cropbox').Jcrop

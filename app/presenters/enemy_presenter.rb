@@ -1,2 +1,0 @@
-class EnemyPresenter < RelationPresenter
-end

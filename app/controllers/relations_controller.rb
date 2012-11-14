@@ -21,12 +21,17 @@ class RelationsController < ApplicationController
     end
   end
 
+  def destroy
+    @relation.destroy
+    redirect_to article_path(@article), notice:deleted(:relation)
+  end
+
   private
 
     def load_article
       if ['Participant in','Wife'].include? params[:type]
-        relative_id = params[:relation].delete(:relative_id)
-        params[:relation][:relative_id] = params[:article_id]
+        relative_id = params[:relation].delete(:relative_token)
+        params[:relation][:relative_token] = params[:article_id]
         @article = Article.find(relative_id)
       else
         @article = Article.find(params[:article_id])
