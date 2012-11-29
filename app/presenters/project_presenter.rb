@@ -9,23 +9,32 @@ class ProjectPresenter < BasePresenter
     output
   end 
 
+  # ============= ARTICLES ======================
+
+  def listing(sing,c=[])
+    if project.send(sing.to_s.pluralize).present?
+      c[0] = (c[0] == '#f5f5dc' ? '#f0f8ff' : '#f5f5dc')
+      h.content_tag(:div, class:sing.to_s.pluralize, style:"background: #{c[0]}") do
+        h.content_tag(:h2) do
+          h.pl(sing)
+        end +
+        h.content_tag(:ul, class:sing.to_s.pluralize) do
+          h.render partial:"articles/article", collection:project.send(sing.to_s.pluralize), locals:{article_type:sing}
+        end
+      end
+    end
+  end
+  def characters(c=[]) listing(:character,c) end
+  def events(c=[]) listing(:event,c) end
   def articles
     h.content_tag :div, class:'articles' do
-      characters+events
+      c = ['#f5f5dc'] 
+      characters(c)+events(c)
     end if project.articles.present?
   end
 
-  def listing(sing)
-    h.content_tag(:h2) do
-      h.pl(sing)
-    end +
-    h.content_tag(:ul, class:sing.to_s.pluralize) do
-      h.render partial:"articles/article", collection:project.send(sing.to_s.pluralize), locals:{article_type:sing}
-    end if project.send(sing.to_s.pluralize).present?
-  end
+  # =============================================
 
-  def characters; listing(:character) end
-  def events; listing(:event) end
 
   def projects
     h.content_tag :div, class:'projects' do

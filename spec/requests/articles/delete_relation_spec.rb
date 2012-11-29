@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Articles, delete relation', focus:true do
+describe 'Articles, delete relation' do
   let(:spawn){ create(:character)}
   let(:violator){ create(:character)}
   let(:delete_relation){ lambda{ click_link 'Delete'}}

@@ -30,7 +30,7 @@ ul
       margin-left: -65px
       float: left
     &:hover
-      background: #eee
+      background: lighten(#eee, 10%)
       border-color: #ccc
 
 div.articles
@@ -43,6 +43,7 @@ div.article
     float: left
 
 div.relations
+  +column-count(2)
   span.actions
     margin-left: 2px
 
