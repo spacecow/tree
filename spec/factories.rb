@@ -14,6 +14,7 @@ FactoryGirl.define do
 
   factory :history do
     content 'Factory content'
+    association :historable, factory: :character
   end
 
   factory :relation do

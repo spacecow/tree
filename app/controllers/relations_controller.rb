@@ -6,6 +6,7 @@ class RelationsController < ApplicationController
 
   def show
     @main = (params[:main_id] && Article.find(params[:main_id])) || @article
+    @history = History.new
   end
 
   def create

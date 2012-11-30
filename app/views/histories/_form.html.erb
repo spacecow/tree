@@ -1,10 +1,9 @@
-<h2><%= add(:history) %></h2>
-
 <%= simple_form_for history do |f| %>
   <%= f.input :content %>
   <%= f.input :issue %>
   <%= f.input :page %>
   <%= f.button :submit %>
-  <%= hidden_field_tag :article_id, article_id %>
-  <%= hidden_field_tag :relation_id, relation_id if relation_id %>
+  <%= hidden_field_tag :historable_id, historable_id %>
+  <%= hidden_field_tag :historable_type, historable_type %>
+  <%# hidden_field_tag :relation_id, relation_id if relation_id %>
 <% end %>

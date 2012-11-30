@@ -9,6 +9,7 @@ describe 'relations/show.html.erb' do
   context "base layout" do
     before do
       assign(:main, spawn)
+      assign(:history, History.new)
     end
 
     context "user not logged in" do
@@ -36,6 +37,7 @@ describe 'relations/show.html.erb' do
       controller.stub(:current_user){ nil }
       enemy.histories << create(:history)
       assign(:main, spawn)
+      assign(:history, History.new)
       render
     end
 
@@ -51,6 +53,7 @@ describe 'relations/show.html.erb' do
     before do
       controller.stub(:current_user){ nil }
       assign(:main, violator)
+      assign(:history, History.new)
       render
     end
 

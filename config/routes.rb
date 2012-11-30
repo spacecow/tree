@@ -8,14 +8,14 @@ Tree::Application.routes.draw do
     resources :relations, only: [:show,:create,:destroy]
   end
 
-  resources :characters, controller: :articles do
-    resources :relations
-  end
-  resources :events, controller: :articles do
-    resources :relations
-  end
+  resources :characters, controller: :articles
+  #  resources :relations
+  #end
+  #resources :events, controller: :articles do
+  #  resources :relations
+  #end
 
-  resources :histories, only: :create
+  resources :histories, only:[:create,:edit,:update]
 
   get 'welcome' => 'projects#index'
   root :to => 'projects#index'

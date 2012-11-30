@@ -3,6 +3,7 @@ class History < ActiveRecord::Base
   attr_accessible :content, :issue, :page
 
   validates :content, presence:true
+  validates :historable, presence:true
 
   def article; relation.article end
 end

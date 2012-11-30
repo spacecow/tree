@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
 
   def show
     @relation = Relation.new
+    @history = History.new
   end
 
   def index

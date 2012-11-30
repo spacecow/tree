@@ -10,15 +10,15 @@ describe 'Relation' do
     fill_in 'Content', with:'sworn enemies'
     fill_in 'Issue', with:1
     fill_in 'Page', with:9
+    click_button 'Create History'
   end
-  let(:create_history){ lambda{ click_button 'Create History' }}
 
-  it "saves histories to db" do
-    lambda{ create_history.call }.should change(History,:count).by(1)
+  describe History do
+    subject{ History }
+    its(:count){ should be 1 }
   end
 
   context "create history" do
-    before{ create_history.call }
     subject{ History.last }
     its(:historable_id){ should be enemy.id }
     its(:content){ should eq 'sworn enemies' }

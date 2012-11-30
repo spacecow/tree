@@ -13,8 +13,12 @@ class ArticlePresenter < BasePresenter
     end if article.histories.present?
   end
 
-  def history_form
-    h.render 'histories/form', history:History.new, article_id:article.id, relation_id:nil if h.can? :new, History
+  def history_form(history)
+    output = nil
+    h.present history do |presenter| 
+      output = presenter.form(article.id, 'Article')
+    end if h.can?(history.new_record? ? :new : :edit, history)
+    output
   end
 
 

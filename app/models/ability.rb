@@ -9,7 +9,7 @@ class Ability
       can :create, Project
       can [:create,:update], Article
       can [:create,:destroy], Relation
-      can :create, History
+      can [:create,:update], History
     end
   end
 end

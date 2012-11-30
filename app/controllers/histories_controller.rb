@@ -1,25 +1,29 @@
 class HistoriesController < ApplicationController
-  load_and_authorize_resource :article
-  before_filter :load_history
-  load_and_authorize_resource :relation, through: :article
-  load_and_authorize_resource :history, through: :relation
+  before_filter :load_historable
+  load_and_authorize_resource :history, through: :historable
 
   def create
     if @history.save
-      if params[:relation_id]
-        redirect_to article_relation_url(@article, @relation), notice:created(:history)
-      else
-        redirect_to article_url(@article), notice:created(:history)
+      flash[:notice] = created(:history)
+      if @historable.kind_of? Article
+        redirect_to article_path(@historable)
+      elsif @historable.kind_of? Relation
+        redirect_to article_relation_path(@historable.article, @historable)
       end
+    end
+  end
+
+  def update
+    if @history.update_attributes params[:history]
+      redirect_to @history.historable, notice:updated(:history) 
+    else
+      render :edit
     end
   end
 
   private
 
-    def load_history
-      unless params[:relation_id] 
-        @history = @article.histories.build(params[:history])
-        authorize! :create, @history
-      end
+    def load_historable
+      @historable = Kernel.const_get(params[:historable_type]).find(params[:historable_id])
     end
 end

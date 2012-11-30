@@ -37,8 +37,10 @@ en:
   labels:
     add: Add %{o}
     crop: Crop %{o}
+    edit: Edit %{o}
     new: New %{o}
 
   successes:
     created: "%{o} created"
     deleted: "%{o} deleted"
+    updated: "%{o} updated"

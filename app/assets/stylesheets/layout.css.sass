@@ -9,8 +9,7 @@ a
   color: $blue
   text-shadow: 1px 1px 1px #aaa
   &:hover
-    color: #eee
-    text-shadow: 1px 1px 1px $blue 
+    color: lighten($blue, 30%)
 
 div.clear
   clear: both
@@ -50,15 +49,20 @@ div.relations
 div.subtitle
   margin-top: -20px
 
-form
+$input_width: 400px
+div.form
   padding-left: 100px
-  label
-    width: 95px
-    margin-left: -100px
-    text-align: right
-    float: left
-  textarea
-    height: 70px
-    width: 400px
-  input.string
-    width: 400px
+  form
+    label
+      width: 95px
+      margin-left: -100px
+      text-align: right
+      float: left
+    textarea
+      height: 70px
+      width: $input_width
+    input.string
+      width: $input_width
+    ul.token-input-list
+      width: $input_width+3px !important
+      display: inline-block

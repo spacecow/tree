@@ -1,0 +1,7 @@
+<%= title edit(:history) %>
+
+<% present @history do |presenter| %>
+
+<%= presenter.form(@historable.id, @historable.type) %>
+
+<% end %>

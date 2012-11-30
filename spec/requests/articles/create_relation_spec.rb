@@ -15,7 +15,7 @@ describe 'Articles, create relation' do
     end
     let(:create_relation){ lambda{ click_button 'Create Relation'}}
 
-    it 'saves a relation to db', focus:true do
+    it 'saves a relation to db' do
       lambda{ create_relation.call }.should change(Relation,:count).by(1)
     end
 

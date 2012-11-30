@@ -6,6 +6,14 @@ describe ArticlePresenter do
   let(:batman){ create(:character)}
   let(:presenter){ ArticlePresenter.new(spawn, view)}
 
+  describe '#histories' do
+    before do
+      spawn.histories << mock_model(History).as_null_object
+    end
+    subject{ Capybara.string(presenter.histories).find('div.histories')} 
+    it{ should have_selector 'span.history' }
+  end
+
   describe '#relations' do
     context 'without relations' do
       it{ presenter.relations.should be_nil }

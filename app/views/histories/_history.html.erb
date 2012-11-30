@@ -1,5 +1,6 @@
 <% present history do |presenter| %>
 
+<%= p history.historable.class.superclass %>
 <span class='history'>
   <%= presenter.content %>
   <%= presenter.reference %>

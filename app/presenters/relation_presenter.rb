@@ -22,7 +22,9 @@ class RelationPresenter < BasePresenter
   end
 
   def form(article)
-    h.render 'relations/form', article:article, relation:relation if h.can? :new, Relation
+    h.content_tag :div, class:'form' do 
+      h.render 'relations/form', article:article, relation:relation if h.can? :new, Relation
+    end
   end
 
   def head(main)
@@ -31,8 +33,12 @@ class RelationPresenter < BasePresenter
     end
   end
 
-  def history_form
-    h.render 'histories/form', history:History.new, article_id:relation.article_id, relation_id:relation.id if h.can? :new, History
+  def history_form(history)
+    output = nil
+    h.present history do |presenter| 
+      output = presenter.form(relation.id, 'Relation')
+    end if h.can?(history.new_record? ? :new : :edit, history)
+    output
   end
 
   def histories
