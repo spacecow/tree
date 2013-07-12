@@ -7,7 +7,7 @@ class Ability
     can :read, Relation
     if user
       can :create, Project
-      can [:create,:update], Article
+      can [:create,:update,:destroy], Article
       can [:create,:destroy], Relation
       can [:create,:update], History
     end

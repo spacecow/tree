@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'jquery-rails'
 gem 'cancan'
 gem 'simple_form'
 gem 'carrierwave'
-gem 'rmagick'
+gem 'rmagick', '2.13.2'
 #gem 'poltergeist'
 #gem 'strong_parameters'
 
@@ -25,7 +25,8 @@ end
 
 group :test do
   gem 'its'
-  gem 'rb-inotify', '~> 0.8.8'
+  #gem 'rb-inotify', '~> 0.8.8'
+  gem 'rb-fsevent', '~> 0.9'
   gem 'fuubar'
   gem 'spork-rails' #, '> 0.9.0.rc'
   gem 'guard'

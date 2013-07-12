@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HistoriesController, focus:true do
+describe HistoriesController do
   def send_put(content='')
     put :update, id:history.id, historable_id:history.historable_id, historable_type:history.historable_type, history:{content:content, issue:1, page:2}
   end
@@ -23,7 +23,7 @@ describe HistoriesController, focus:true do
 
       describe "flash" do
         subject{ flash }
-        its(:notice){ should eq 'History updated' } 
+        its(:notice){ should eq 'History updated' }
       end
 
       describe 'updated history' do
@@ -39,8 +39,8 @@ describe HistoriesController, focus:true do
 
       describe "response" do
         subject{ response }
-        it{ should render_template :edit } 
-      end  
+        it{ should render_template :edit }
+      end
     end
   end
 end

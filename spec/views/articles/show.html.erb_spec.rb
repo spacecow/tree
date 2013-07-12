@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'articles/show.html.erb' do
-  let(:spawn){ Character.create!(name:'Spawn')}
+  let(:spawn){ create :character, name:'Spawn' }
   let(:violator){ create(:character, name:'Violator')}
   before{ create(:enemy, article:spawn, relative:violator)}
 
@@ -17,7 +17,7 @@ describe 'articles/show.html.erb' do
 
     subject{ Capybara.string(rendered)}
     it{ should have_selector('h1', text:'Spawn: Character') }
-    
+
     describe 'span.actions' do
       subject{ Capybara.string(rendered).find('span.actions')}
       it{ should have_xpath("//a", text:'Edit') }
@@ -27,7 +27,7 @@ describe 'articles/show.html.erb' do
       describe "form#new_relation" do
         subject{ Capybara.string(rendered).find("div.article form#new_relation")}
         it{ should have_field 'Relative', with:nil}
-        it{ should have_select 'Type', options:['Enemy'], selected:nil }
+        it{ should have_select 'Type' } #, options:['EnemyFriendParticipantParticipant inHusbandWifeVictimKilled by'], selected:nil }
         it{ should have_button 'Create Relation' }
       end # from#new_relation
     end # div.article

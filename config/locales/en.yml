@@ -24,6 +24,8 @@ en:
     other: Participants
   participant_in:
     other: Participant in
+  place:
+    other: Places
   project:
     one: Project
     other: Projects

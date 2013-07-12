@@ -11,13 +11,13 @@ class RelationsController < ApplicationController
 
   def create
     if params[:type] == 'Participant in'
-      @relation.type = 'Participant' 
+      @relation.type = 'Participant'
     elsif params[:type] == 'Wife'
-      @relation.type = 'Husband' 
+      @relation.type = 'Husband'
     else
       @relation.type = params[:type]
     end
-    if @relation.save
+    if @relation.save!
       redirect_to article_path(@article), notice:created(:relation)
     end
   end

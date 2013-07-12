@@ -6,9 +6,21 @@ FactoryGirl.define do
     name 'Factory name'
     factory :character do
       type 'Character'
+      after(:build) do |article|
+        article.projects << build(:project)
+      end
     end
     factory :event do
       type 'Event'
+      after(:build) do |article|
+        article.projects << build(:project)
+      end
+    end
+    factory :place do
+      type 'Place'
+      after(:build) do |article|
+        article.projects << build(:project)
+      end
     end
   end
 

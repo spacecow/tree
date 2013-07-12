@@ -16,10 +16,11 @@ class Article < ActiveRecord::Base
 
   validates :name, presence:true
   validates :type, presence:true
+  #validates :projects, presence:true
 
   after_update :crop_image
 
-  TYPES = %w(Character Event)
+  TYPES = %w(Character Event Place)
 
   def all_relations; relations + inverse_relations end
   def crop_image
@@ -37,7 +38,7 @@ class Article < ActiveRecord::Base
   def victims; relations.where(type:'Victim') end
   def wives; inverse_relations.where(type:'Husband') end
 
-  class << self 
+  class << self
     def id_from_token(token)
       token.gsub!(/<<<(.+?):(.+?)>>>/) do
         article = new(name:$1)
@@ -48,9 +49,9 @@ class Article < ActiveRecord::Base
       token
     end
     def token(query)
-      articles = where("name like ?", "%#{query}%") 
+      articles = where("name like ?", "%#{query}%")
       if articles.empty?
-        [{id: "<<<#{query}>>>", name: "New \"#{query}\""}] 
+        [{id: "<<<#{query}>>>", name: "New \"#{query}\""}]
       else
         articles
       end

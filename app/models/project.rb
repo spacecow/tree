@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
 
   def characters; articles.where(type:'Character') end
   def events; articles.where(type:'Event') end
+  def places; articles.where(type:'Place') end
 
   class << self
     def options

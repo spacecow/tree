@@ -6,7 +6,7 @@ describe ProjectPresenter do
 
   describe "#articles" do
     context "without articles" do
-      specify{ presenter.articles.should be_nil }
+      specify{ presenter.articles.should be_empty }
     end
 
     context "with characters&events" do
@@ -29,8 +29,8 @@ describe ProjectPresenter do
   describe "#characters" do
     context 'with events' do
       before{ project.articles << create(:event)}
-      specify{ presenter.characters.should be_nil }
-    end # with events 
+      specify{ presenter.characters.should be_empty }
+    end # with events
 
     context 'with characters' do
       before do
@@ -44,14 +44,14 @@ describe ProjectPresenter do
         subject{ Capybara.string(presenter.characters).find('ul.characters')}
         it{ should have_selector 'li.article.character', count:1 }
       end # div.characters
-    end # with characters 
+    end # with characters
   end
 
   describe "#events" do
     context 'with characters' do
       before{ project.articles << create(:character)}
       specify{ presenter.events.should be_nil }
-    end # with characters 
+    end # with characters
 
     context 'with events' do
       before do
@@ -65,6 +65,6 @@ describe ProjectPresenter do
         subject{ Capybara.string(presenter.events).find('ul.events')}
         it{ should have_selector 'li.article.event', count:1 }
       end # div.events
-    end # with events 
+    end # with events
   end
 end

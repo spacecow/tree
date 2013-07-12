@@ -86,9 +86,8 @@ describe 'Articles, create relation' do
         signin
         visit article_path(spawn)
         fill_in 'Relative token', with:'Spawn'
-        p Article.count
-        p page.find('div.token-input-dropdown').text
-        p page.find('ul.token-input-list').text
+        page.find('div.token-input-dropdown').text
+        page.find('ul.token-input-list').text
         page.driver.render('/home/jsveholm/file.png')
         page.should have_selector 'div.token-input-dropdown'
       end

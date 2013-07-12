@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'articles/_character.html.erb' do
-  let!(:character){ Character.create!(name:'Spawn')}
+  let!(:character){ create :character, name:'Spawn' }
   before{ render partial:'articles/article', locals:{article:character, article_type: :character}}
 
   describe 'li.article.character' do
@@ -9,7 +9,7 @@ describe 'articles/_character.html.erb' do
 
     describe 'div.name' do
       subject{ Capybara.string(rendered).find('li.article.character div.name')}
-      it{ should have_xpath "//a[@href='#{article_path(character)}']", text:'Spawn' } 
+      it{ should have_xpath "//a[@href='#{article_path(character)}']", text:'Spawn' }
     end
   end
 end

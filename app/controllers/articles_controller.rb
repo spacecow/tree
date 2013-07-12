@@ -18,19 +18,19 @@ class ArticlesController < ApplicationController
     type = params[:article].delete(:type)
     @article = Article.new(params[:article])
     @article.type = type
+    @article.projects << @project
 
     if @article.save
-        @article.projects << @project
       if params[:article][:image].present?
         render :crop
       else
-        redirect_to articles_url
+        redirect_to @project
       end
     else
       if request.referer =~ /articles\/new/
         render :new
       else
-        render template:'projects/show' 
+        render template:'projects/show'
       end
     end
   end
@@ -46,5 +46,11 @@ class ArticlesController < ApplicationController
     else
       # error handling
     end
+  end
+
+  def destroy
+    project = @article.projects.first
+    @article.destroy
+    redirect_to project
   end
 end

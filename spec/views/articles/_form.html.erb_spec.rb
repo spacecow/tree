@@ -1,35 +1,34 @@
 require 'spec_helper'
 
 describe 'articles/_form.html.erb' do
-  context "base layout" do
-    before{ render 'articles/form', article:Article.new, project_id:1 }
+  let(:article){ Article.new }
+  let(:rendering){ Capybara.string rendered }
+  let(:project){ create :project, title:'Spawn' }
+  subject{ rendering.find('form#new_article')}
 
-    describe "form#new_article" do
-      subject{ Capybara.string(rendered).find('form#new_article')}
-      it{ should have_field 'Name', with:nil }
-      it{ should have_select('Type', options:['Character', 'Event'], selected:nil)}
-      it{ should have_field 'Image', with:nil }
-      it{ should have_button('Create Article') }
+  context "project chosen" do
+    before{ render 'articles/form', article:article, project_id:project.id }
+
+    it{ should have_field 'Name', with:nil }
+    it{ should have_field 'Image', with:nil }
+    it{ should have_button('Create Article') }
+    it{ should_not have_select('Project') } #project already chosen
+
+    describe "Type" do
+      subject{ rendering.find('select') }
+      it{ subject.text.should eq %w(Character Event Place).join }
     end
-  end # base layout
+  end # project chosen
 
-  context "project selected" do
-    before{ render 'articles/form', article:Article.new, project_id:1 }
-    describe "form#new_article" do
-      subject{ Capybara.string(rendered).find('form#new_article')}
-      it{ should_not have_select('Project') }
-    end
-  end
-
-  context "project not selected" do
+  context "project not chosen" do
     before do
-      create(:project, title:'Spawn')
-      render 'articles/form', article:Article.new, project_id:nil
+      project
+      render 'articles/form', article:article, project_id:nil
     end
 
-    describe "form#new_article" do
-      subject{ Capybara.string(rendered).find('form#new_article')}
-      it{ should have_select('Project', options:['Spawn']) }
+    describe "Project" do
+      subject{ rendering.find 'select#project_id' }
+      it{ subject.text.should eq 'Spawn' }
     end
-  end
+  end # project not chosen
 end

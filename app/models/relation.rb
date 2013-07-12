@@ -28,7 +28,7 @@ class Relation < ActiveRecord::Base
   class << self
     def inverse_type; to_s end
     def type(inverse)
-      inverse ? inverse_type : to_s 
+      inverse ? inverse_type : to_s
     end
     def type_options
       TYPES.map{|e| "<option>#{e}</option>"}.join.html_safe
