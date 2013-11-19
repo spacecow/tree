@@ -6,6 +6,9 @@ Tree::Application.routes.draw do
 
   resources :articles, only: [:show,:index,:new,:create,:edit,:update,:delete] do
     resources :relations, only: [:show,:create,:destroy]
+    collection do
+      get :test
+    end
   end
 
   resources :characters, controller: :articles

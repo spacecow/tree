@@ -6,11 +6,20 @@ describe ArticlePresenter do
   let(:batman){ create(:character)}
   let(:presenter){ ArticlePresenter.new(spawn, view)}
 
+  describe '#articles' do
+    it "should render sub-articles" do
+      presenter.should_receive(:characters).and_return ""
+      presenter.should_receive(:events).and_return ""
+      presenter.should_receive(:places).and_return ""
+      presenter.articles
+    end
+  end
+
   describe '#histories' do
     before do
       spawn.histories << mock_model(History).as_null_object
     end
-    subject{ Capybara.string(presenter.histories).find('div.histories')} 
+    subject{ Capybara.string(presenter.histories).find('div.histories')}
     it{ should have_selector 'span.history' }
   end
 

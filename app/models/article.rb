@@ -20,7 +20,7 @@ class Article < ActiveRecord::Base
 
   after_update :crop_image
 
-  TYPES = %w(Character Event Place)
+  TYPES = %w(Character Event Place Concept)
 
   def all_relations; relations + inverse_relations end
   def crop_image

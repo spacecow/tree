@@ -5,6 +5,7 @@ class Ability
     can :read, Project
     can :read, Article
     can :read, Relation
+    can :test, Article
     if user
       can :create, Project
       can [:create,:update,:destroy], Article

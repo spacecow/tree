@@ -25,6 +25,6 @@ describe 'Relation' do
     its(:issue){ should be 1 }
     its(:page){ should be 9 }
     specify{ page.should have_content 'History created' }
-    specify{ current_path.should eq article_relation_path(spawn,enemy)}  
+    specify{ current_path.should eq article_relation_path(spawn,enemy)}
   end
 end

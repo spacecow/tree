@@ -6,7 +6,7 @@ describe ProjectPresenter do
 
   describe "#articles" do
     context "without articles" do
-      specify{ presenter.articles.should be_empty }
+      specify{ presenter.articles.should be_blank }
     end
 
     context "with characters&events" do
@@ -50,7 +50,7 @@ describe ProjectPresenter do
   describe "#events" do
     context 'with characters' do
       before{ project.articles << create(:character)}
-      specify{ presenter.events.should be_nil }
+      specify{ presenter.events.should be_blank }
     end # with characters
 
     context 'with events' do

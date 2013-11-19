@@ -12,7 +12,7 @@ class ProjectPresenter < BasePresenter
   # ============= ARTICLES ======================
 
   def listing(sing,c=[])
-    if project.send(sing.to_s.pluralize).present?
+    (if project.send(sing.to_s.pluralize).present?
       c[0] = (c[0] == '#f5f5dc' ? '#f0f8ff' : '#f5f5dc')
       h.content_tag(:div, class:sing.to_s.pluralize, style:"background: #{c[0]}") do
         h.content_tag(:h2) do
@@ -22,7 +22,7 @@ class ProjectPresenter < BasePresenter
           h.render partial:"articles/article", collection:project.send(sing.to_s.pluralize), locals:{article_type:sing}
         end
       end
-    end || "".html_safe
+    end || "").html_safe
   end
   def characters(c=[]) listing(:character,c) end
   def events(c=[]) listing(:event,c) end

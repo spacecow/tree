@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
   load_and_authorize_resource except: :create
 
+  def test
+  end
+
   def show
     @relation = Relation.new
     @history = History.new

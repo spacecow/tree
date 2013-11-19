@@ -1,6 +1,18 @@
 class ArticlePresenter < BasePresenter
   presents :article
 
+  def articles
+    colour = ['#f5f5dc']
+    Article::TYPES.each do |type|
+      send type.downcase.pluralize, colour
+    end
+  end
+
+  Article::TYPES.each do |type|
+    define_method(type.downcase.pluralize) do |colour|
+      h.render 'articles/subarticles'
+    end
+  end
 
   def form(project_id=nil)
     h.render 'articles/form', article:article, project_id:project_id if h.can? :new, Article
@@ -15,7 +27,7 @@ class ArticlePresenter < BasePresenter
 
   def history_form(history)
     output = nil
-    h.present history do |presenter| 
+    h.present history do |presenter|
       output = presenter.form(article.id, 'Article')
     end if h.can?(history.new_record? ? :new : :edit, history)
     output
@@ -71,7 +83,7 @@ class ArticlePresenter < BasePresenter
   def wifes(c=[]) listing(:wife,c) end
   def relations
     h.content_tag :div, class:'relations' do
-      c = ['#f5f5dc'] 
+      c = ['#f5f5dc']
       husbands(c)+wifes(c)+enemies(c)+friends(c)+participants(c)+participant_ins(c)+victims(c)+killed_bies(c)
     end.html_safe if article.all_relations.present?
   end

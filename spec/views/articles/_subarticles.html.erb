@@ -1,0 +1,9 @@
+require 'spec_helper'
+
+describe 'articles/_place.html.erb' do
+  before do
+    render 'articles/place'
+  end
+
+  it{ rendered.should have_selector 'li.article.place' }
+end
