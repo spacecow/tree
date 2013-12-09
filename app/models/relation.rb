@@ -10,7 +10,12 @@ class Relation < ActiveRecord::Base
   validates :article_id, presence:true
   validates :type, presence:true
 
-  TYPES = ['Enemy','Friend','Participant','Participant in','Husband','Wife','Victim','Killed by', 'Inhabitant', 'Inhabit']
+  TYPES = {'Enemy'       => 'Enemy',
+           'Friend'      => 'Friend',
+           'Participant' => 'Participant in',
+           'Husband'     => 'Wife',
+           'Victim'      => 'Killed by',
+           'Inhabitant'  => 'Inhabit'}
 
   def article_name; article.name end
   def image_url(version,main)
@@ -31,7 +36,10 @@ class Relation < ActiveRecord::Base
       inverse ? inverse_type : to_s
     end
     def type_options
-      TYPES.map{|e| "<option>#{e}</option>"}.join.html_safe
+      types.map{|e| "<option>#{e}</option>"}.join.html_safe
+    end
+    def types
+      TYPES.to_a.flatten.uniq
     end
   end
 end

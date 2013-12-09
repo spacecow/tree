@@ -29,6 +29,11 @@ describe 'articles/show.html.erb' do
         it{ should have_field 'Relative', with:nil}
         it{ should have_select 'Type' } #, options:['EnemyFriendParticipantParticipant inHusbandWifeVictimKilled by'], selected:nil }
         it{ should have_button 'Create Relation' }
+
+        describe "select" do
+          subject{ Capybara.string(rendered).find("div.article form#new_relation select")}
+          it{ should have_selector 'option', count:10 }
+        end
       end # from#new_relation
     end # div.article
   end

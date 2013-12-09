@@ -26,19 +26,21 @@ class Article < ActiveRecord::Base
   def crop_image
     image.recreate_versions! if crop_x.present?
   end
-  def enemies
-    relations.where(type:'Enemy') + inverse_relations.where(type:'Enemy')
+
+  Relation.types.each do |relation|
+    define_method relation.downcase.gsub(/ /,'_').pluralize do
+      if Relation::TYPES[relation] == relation
+        relations.where(type:relation) + inverse_relations.where(type:relation)
+      elsif Relation::TYPES[relation]
+        relations.where(type:relation)
+      else
+        key = Relation::TYPES.select{|k,v| v == relation}.keys.first
+        inverse_relations.where(type:key)
+      end
+    end
   end
-  def friends; relations.where(type:'Friend') + inverse_relations.where(type:'Friend') end
-  def husbands; relations.where(type:'Husband') end
-  def inhabitants; relations.where(type:'Inhabitant') end
-  def inhabits; inverse_relations.where(type:'Inhabitant') end
-  def killed_bies; inverse_relations.where(type:'Victim') end
-  def participants; relations.where(type:'Participant') end
-  def participant_ins; inverse_relations.where(type:'Participant') end
+
   def title; "#{name}: #{type}" end
-  def victims; relations.where(type:'Victim') end
-  def wives; inverse_relations.where(type:'Husband') end
 
   class << self
     def id_from_token(token)

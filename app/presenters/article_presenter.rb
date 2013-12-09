@@ -73,20 +73,19 @@ class ArticlePresenter < BasePresenter
       ""
     end.html_safe
   end
-  def enemies(c=[]) listing(:enemy,c) end
-  def friends(c=[]) listing(:friend,c) end
-  def husbands(c=[]) listing(:husband,c) end
-  def inhabitants(c=[]) listing(:inhabitant,c) end
-  def inhabits(c=[]) listing(:inhabit,c) end
-  def killed_bies(c=[]) listing(:killed_by,c) end
-  def participants(c=[]) listing(:participant,c) end
-  def participant_ins(c=[]) listing(:participant_in,c) end
-  def victims(c=[]) listing(:victim,c) end
-  def wifes(c=[]) listing(:wife,c) end
+
+  Relation.types.map{|e| e.downcase.gsub(/ /,'_')}.each do |relation|
+    define_method relation.pluralize do |c=[]|
+      listing(relation, c)
+    end
+  end
+
   def relations
     h.content_tag :div, class:'relations' do
       c = ['#f5f5dc']
-      husbands(c)+wifes(c)+enemies(c)+friends(c)+participants(c)+participant_ins(c)+victims(c)+killed_bies(c)+inhabitants(c)+inhabits(c)
+      Relation.types.map do |relation|
+        send(relation.downcase.pluralize.gsub(/ /,'_'), c)
+      end.join.html_safe
     end.html_safe if article.all_relations.present?
   end
 
