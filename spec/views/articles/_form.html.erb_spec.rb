@@ -16,7 +16,7 @@ describe 'articles/_form.html.erb' do
 
     describe "Type" do
       subject{ rendering.find('select') }
-      it{ subject.text.should eq %w(Character Event Place).join }
+      it{ subject.text.should eq %w(Character Event Place Concept Organization).join }
     end
   end # project chosen
 

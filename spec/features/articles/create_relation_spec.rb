@@ -11,7 +11,7 @@ describe 'Articles, create relation' do
       visit article_path(spawn)
       #select 'Hinckley Incident', from:'Relative'
       fill_in 'Relative', with:event.id
-      select 'Participant in', from:'Type'
+      select 'Inhabit', from:'Type'
     end
     let(:create_relation){ lambda{ click_button 'Create Relation'}}
 
@@ -24,7 +24,7 @@ describe 'Articles, create relation' do
       subject{ Relation.last }
       its(:relative_id){ should be spawn.id }
       its(:article_id){ should be event.id }
-      its(:type){ should eq 'Participant' }
+      its(:type){ should eq 'Inhabitant' }
       it "set correct redirect"
       #specify{ current_path.should eq article_path(article)}
       specify{ page.should have_selector 'div#flash_notice', text:'Relation created' }

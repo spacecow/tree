@@ -14,6 +14,10 @@ class RelationsController < ApplicationController
       @relation.type = 'Participant'
     elsif params[:type] == 'Wife'
       @relation.type = 'Husband'
+    elsif params[:type] == 'Inhabit'
+      @relation.type = 'Inhabitant'
+    elsif params[:type] == 'Killed by'
+      @relation.type = 'Victim'
     else
       @relation.type = params[:type]
     end
@@ -30,7 +34,7 @@ class RelationsController < ApplicationController
   private
 
     def load_article
-      if ['Participant in','Wife'].include? params[:type]
+      if ['Participant in','Wife', 'Inhabit', 'Killed by'].include? params[:type]
         relative_id = params[:relation].delete(:relative_token)
         params[:relation][:relative_token] = params[:article_id]
         @article = Article.find(relative_id)

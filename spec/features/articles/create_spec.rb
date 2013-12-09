@@ -6,7 +6,7 @@ describe 'Articles, create' do
     signin
     visit new_article_path
     fill_in 'Name', with:'Spawn'
-    select 'Character', from:'Type'
+    select 'Organization', from:'Type'
     select 'Spawn', from:'Project'
   end
   let(:create_article){ lambda{ click_button 'Create Article'}}
@@ -22,7 +22,7 @@ describe 'Articles, create' do
     before{ create_article.call }
     subject{ Article.last }
     its(:name){ should eq 'Spawn' }
-    its(:type){ should eq 'Character' }
+    its(:type){ should eq 'Organization' }
   end # saves article
 
   context 'saves roles' do

@@ -8,7 +8,8 @@ describe 'articles/_articles.html.erb' do
 
   it "is has a wrapper" do
     render 'articles/articles'
-    rendered.should have_selector 'div.articles'
+    p rendered
+    rendered.should have_selector 'ul.articles'
   end
 
   it "displays the articles" do

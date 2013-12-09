@@ -4,6 +4,8 @@
 en:
   character:
     other: Characters
+  concept:
+    other: Concept
   delete: Delete
   edit: Edit
   enemy:
@@ -16,10 +18,16 @@ en:
     one: History
   husband:
     other: Husbands
+  inhabitant:
+    other: Inhabitants
+  inhabit:
+    other: Inhabits
   killed_by:
     other: Killed by
   image:
     one: Image
+  organization:
+    other: Organizations
   participant:
     other: Participants
   participant_in:

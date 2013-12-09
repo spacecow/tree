@@ -25,12 +25,14 @@ class ProjectPresenter < BasePresenter
     end || "").html_safe
   end
   def characters(c=[]) listing(:character,c) end
+  def concepts(c=[]) listing(:concept,c) end
   def events(c=[]) listing(:event,c) end
+  def organizations(c=[]) listing(:organization,c) end
   def places(c=[]) listing(:place,c) end
   def articles
     h.content_tag :div, class:'articles' do
       c = ['#f5f5dc']
-      characters(c)+events(c)+places(c)
+      characters(c)+events(c)+places(c)+concepts(c)+organizations(c)
     end if project.articles.present?
   end
 

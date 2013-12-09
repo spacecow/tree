@@ -20,7 +20,7 @@ class Article < ActiveRecord::Base
 
   after_update :crop_image
 
-  TYPES = %w(Character Event Place Concept)
+  TYPES = %w(Character Event Place Concept Organization)
 
   def all_relations; relations + inverse_relations end
   def crop_image
@@ -31,6 +31,8 @@ class Article < ActiveRecord::Base
   end
   def friends; relations.where(type:'Friend') + inverse_relations.where(type:'Friend') end
   def husbands; relations.where(type:'Husband') end
+  def inhabitants; relations.where(type:'Inhabitant') end
+  def inhabits; inverse_relations.where(type:'Inhabitant') end
   def killed_bies; inverse_relations.where(type:'Victim') end
   def participants; relations.where(type:'Participant') end
   def participant_ins; inverse_relations.where(type:'Participant') end

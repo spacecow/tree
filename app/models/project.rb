@@ -6,7 +6,9 @@ class Project < ActiveRecord::Base
   validates :title, presence:true
 
   def characters; articles.where(type:'Character') end
+  def concepts; articles.where(type:'Concept') end
   def events; articles.where(type:'Event') end
+  def organizations; articles.where(type:'Organization') end
   def places; articles.where(type:'Place') end
 
   class << self

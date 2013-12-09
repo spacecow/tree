@@ -10,7 +10,7 @@ class Relation < ActiveRecord::Base
   validates :article_id, presence:true
   validates :type, presence:true
 
-  TYPES = ['Enemy','Friend','Participant','Participant in','Husband','Wife','Victim','Killed by']
+  TYPES = ['Enemy','Friend','Participant','Participant in','Husband','Wife','Victim','Killed by', 'Inhabitant', 'Inhabit']
 
   def article_name; article.name end
   def image_url(version,main)

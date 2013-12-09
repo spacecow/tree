@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Article', focus:true do
+describe 'Article' do
   before do
     visit test_articles_path
   end
